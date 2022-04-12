@@ -48,7 +48,7 @@ const config = {
 const core = {
     ...config,
     name: 'Core',
-    entry: { Core: './src/main.js' },
+    entry: { fp: './src/main.js' },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].bundle.js'

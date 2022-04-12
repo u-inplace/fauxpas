@@ -6,7 +6,7 @@
         "jquery": true
     },
     "parser": "@babel/eslint-parser",
-    "extends": ["airbnb-base", "prettier"],
+    "extends": ["airbnb-base", "prettier", "plugin:jsdoc/recommended"],
     "parserOptions": {
         "ecmaVersion": 12,
         "experimentalObjectRestSpread": true,
@@ -32,7 +32,7 @@
     "globals": {
         "Webflow": true
     },
-    "plugins": ["prettier", "prefer-arrow"],
+    "plugins": ["prettier", "prefer-arrow", "jsdoc"],
     "rules": {
         "prettier/prettier": ["error"],
         "default-case": "error",
@@ -54,6 +54,7 @@
         "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
         "no-self-assign": ["error", { "props": false }],
         "constructor-super": "error",
+        "jsdoc/require-returns-description": "off",
         "prefer-arrow/prefer-arrow-functions": [
             "error",
             {
