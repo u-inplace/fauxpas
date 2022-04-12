@@ -1,0 +1,83 @@
+{
+    "env": {
+        "es2020": true,
+        "es6": true,
+        "browser": true,
+        "jquery": true
+    },
+    "parser": "@babel/eslint-parser",
+    "extends": ["airbnb-base", "prettier"],
+    "parserOptions": {
+        "ecmaVersion": 12,
+        "experimentalObjectRestSpread": true,
+        "requireConfigFile": "false",
+        "babelOptions": {
+            "plugins": [
+                "@babel/syntax-dynamic-import",
+                "@babel/plugin-transform-runtime",
+                "@babel/plugin-proposal-optional-chaining",
+                "@babel/plugin-proposal-class-properties",
+                ["lodash", { "id": ["lodash", "recompose"] }]
+            ],
+            "presets": [
+                [
+                    "@babel/preset-env",
+                    {
+                        "modules": "auto"
+                    }
+                ]
+            ]
+        }
+    },
+    "globals": {
+        "Webflow": true
+    },
+    "plugins": ["prettier", "prefer-arrow"],
+    "rules": {
+        "prettier/prettier": ["error"],
+        "default-case": "error",
+        "linebreak-style": ["error", "unix"],
+        "no-console": 0,
+        "quotes": ["error", "single"],
+        "semi": 0,
+        "no-var": "error",
+        "no-unused-vars": "error",
+        "no-undef": "error",
+        "no-plusplus": "off",
+        "no-prototype-builtins": "off",
+        "no-return-assign": ["error", "except-parens"],
+        "no-unused-expressions": ["error", { "allowShortCircuit": true }],
+        "no-underscore-dangle": ["error", { "allowAfterThis": true }],
+        "func-names": ["error", "as-needed"],
+        "prefer-arrow-callback": ["error", { "allowNamedFunctions": true }],
+        "func-style": ["error", "expression", { "allowArrowFunctions": true }],
+        "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
+        "no-self-assign": ["error", { "props": false }],
+        "constructor-super": "error",
+        "prefer-arrow/prefer-arrow-functions": [
+            "error",
+            {
+                "disallowPrototype": true,
+                "singleReturnOnly": false,
+                "classPropertiesAllowed": false
+            }
+        ],
+        "sort-imports": [
+            "error",
+            {
+                "ignoreCase": false,
+                "ignoreDeclarationSort": true,
+                "ignoreMemberSort": true,
+                "allowSeparatedGroups": false
+            }
+        ]
+    },
+    "overrides": [
+        {
+            "files": ["*.test.js", "*.spec.js"],
+            "rules": {
+                "no-unused-expressions": "off"
+            }
+        }
+    ]
+}
