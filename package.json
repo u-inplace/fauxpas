@@ -1,8 +1,8 @@
 {
     "name": "fauxpas",
     "version": "1.0.0",
-    "description": "Fauxpas InPlace Webflow helper",
-    "main": "main.js",
+    "description": "Fauxpas: Webflow helper",
+    "main": "src/main.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "webpack --mode=production --node-env=production",
@@ -13,7 +13,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git@git-inplace:u-inplace/fauxpas.git"
+        "url": "git@github.com:u-inplace/fauxpas.git"
     },
     "author": {
         "name": "Ulysses Bonfim",
@@ -29,10 +29,8 @@
         "@babel/plugin-proposal-optional-chaining": "^7.16.7",
         "@babel/plugin-transform-runtime": "^7.17.0",
         "@babel/preset-env": "^7.16.11",
-        "@webpack-cli/generators": "^2.4.2",
         "babel-loader": "^8.2.3",
         "babel-plugin-lodash": "^3.3.4",
-        "css-loader": "^6.7.1",
         "eslint": "^8.13.0",
         "eslint-config-airbnb-base": "^15.0.0",
         "eslint-config-prettier": "^8.5.0",
@@ -41,14 +39,11 @@
         "eslint-plugin-prettier": "^4.0.0",
         "html-webpack-plugin": "^5.5.0",
         "lodash-webpack-plugin": "^0.11.6",
-        "mini-css-extract-plugin": "^2.6.0",
         "prettier": "^2.6.0",
-        "sass": "^1.49.9",
-        "sass-loader": "^12.6.0",
         "style-loader": "^3.3.1",
         "webpack": "^5.70.0",
         "webpack-cli": "^4.9.2",
-        "webpack-dev-server": "^4.7.4"
+        "webpack-dev-server": "^4.8.1"
     },
     "dependencies": {
         "lodash": "^4.17.21"

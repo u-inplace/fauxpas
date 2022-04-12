@@ -1,10 +1,15 @@
 #!/bin/bash
 
+bundle="Core.bundle.js"
+target="/dist/$bundle"
+repo="fauxpas"
+branch=$1
+
 # Basic if statement
 while true; do
     printf "\033c"
-    echo @$1
-    result=$(diff <(cat ./dist/Booking.bundle.js) <(curl -s https://combinatronics.com/u-inplace/ui-booking/$1/dist/Booking.bundle.js))
+    echo @$branch
+    result=$(diff <(cat .$target) <(curl -s https://combinatronics.com/u-inplace/$repo/$branch$target))
     if [[ $result != "" ]]; then
         echo Not synced.
     else

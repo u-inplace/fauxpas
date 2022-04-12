@@ -40,39 +40,19 @@ const config = {
             {
                 test: /\.(js|jsx)$/i,
                 loader: 'babel-loader'
-            },
-            {
-                test: /\.css$/i,
-                use: [
-                    {
-                        loader: 'css-loader',
-                        options: { sourceMap: false }
-                    }
-                ]
             }
         ]
     }
 }
 
-const calendarConfig = {
+const core = {
     ...config,
-    name: 'calendarConfig',
-    entry: { Calendar: './src/calendar/main.js' },
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: '[name].bundle.js',
-        library: 'Calendar'
-    }
-}
-
-const bookingConfig = {
-    ...config,
-    name: 'bookingConfig',
-    entry: { Booking: './src/booking/main.js' },
+    name: 'Core',
+    entry: { Core: './src/main.js' },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].bundle.js'
     }
 }
 
-module.exports = () => [calendarConfig, bookingConfig]
+module.exports = () => [core]
