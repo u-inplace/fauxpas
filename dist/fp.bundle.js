@@ -163,8 +163,8 @@ class Dom {
   static setValue(elem, value) {
     if (!elem) return;
 
-    switch (elem.type) {
-      case 'input':
+    switch (elem.tagName) {
+      case 'INPUT':
         this.input.setValue(elem, value);
         break;
 
