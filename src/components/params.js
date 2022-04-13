@@ -18,9 +18,10 @@ const onHashChange = () => {
         /**
          * @type {HTMLInputElement}
          */
-        const input = dom.q(`input[fp-param="${key}"]`)
+        const input = dom.q(`input[data-fp-param="${key}"]`)
         dom.input.setValue(input, value)
     })
 }
 
 window.addEventListener('hashchange', onHashChange)
+window.addEventListener('load', onHashChange)

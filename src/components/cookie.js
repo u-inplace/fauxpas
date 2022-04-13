@@ -8,12 +8,12 @@ import dom from '../lib/dom'
  */
 const cookiesLoad = form => {
     // Read all inputs submited
-    form.querySelectorAll('input[fp-cookie]').forEach(
+    form.querySelectorAll('input[data-fp-cookie]').forEach(
         /**
          * @type {HTMLInputElement}
          */
         input => {
-            const cookieName = input.getAttribute('fp-cookie')
+            const cookieName = input.getAttribute('data-fp-cookie')
             const value = dom.input.getValue(input)
             Cookies.set(cookieName, value)
         }
@@ -21,15 +21,15 @@ const cookiesLoad = form => {
 }
 
 /**
- * Retrieve stored cookies and write into fp-cookie tagged elements
+ * Retrieve stored cookies and write into data-fp-cookie tagged elements
  */
 const cookiesUnload = () => {
-    dom.qall('[fp-cookie]').forEach(
+    dom.qall('[data-fp-cookie]').forEach(
         /**
          * @param {HTMLElement} elem
          */
         elem => {
-            const cookieName = elem.getAttribute('fp-cookie')
+            const cookieName = elem.getAttribute('data-fp-cookie')
             const value = Cookies.get(cookieName)
             value && dom.setValue(elem, value)
         }
@@ -37,7 +37,7 @@ const cookiesUnload = () => {
 }
 
 /**
- * Store all submited input with fp-cookie attribute
+ * Store all submited input with data-fp-cookie attribute
  *
  * @param {Event} event
  */
@@ -53,12 +53,10 @@ const onSubmit = event => {
  * whenever a form is submited
  */
 const onLoad = () => {
-    console.log('cookie.js onLoad')
     // Create listener to all forms
     dom.qall('form').forEach(f => {
-        // f.addEventListener('submit', onSubmit)
         // eslint-disable-next-line no-param-reassign
-        // f.onsubmit = onSubmit
+        f.addEventListener('submit', onSubmit)
     })
 
     cookiesUnload()

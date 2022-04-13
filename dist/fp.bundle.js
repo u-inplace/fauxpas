@@ -21,34 +21,34 @@ __webpack_require__.r(__webpack_exports__);
 
 const cookiesLoad = form => {
   // Read all inputs submited
-  form.querySelectorAll('input[fp-cookie]').forEach(
+  form.querySelectorAll('input[data-fp-cookie]').forEach(
   /**
    * @type {HTMLInputElement}
    */
   input => {
-    const cookieName = input.getAttribute('fp-cookie');
+    const cookieName = input.getAttribute('data-fp-cookie');
     const value = _lib_dom__WEBPACK_IMPORTED_MODULE_1__["default"].input.getValue(input);
     js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].set(cookieName, value);
   });
 };
 /**
- * Retrieve stored cookies and write into fp-cookie tagged elements
+ * Retrieve stored cookies and write into data-fp-cookie tagged elements
  */
 
 
 const cookiesUnload = () => {
-  _lib_dom__WEBPACK_IMPORTED_MODULE_1__["default"].qall('[fp-cookie]').forEach(
+  _lib_dom__WEBPACK_IMPORTED_MODULE_1__["default"].qall('[data-fp-cookie]').forEach(
   /**
    * @param {HTMLElement} elem
    */
   elem => {
-    const cookieName = elem.getAttribute('fp-cookie');
+    const cookieName = elem.getAttribute('data-fp-cookie');
     const value = js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].get(cookieName);
     value && _lib_dom__WEBPACK_IMPORTED_MODULE_1__["default"].setValue(elem, value);
   });
 };
 /**
- * Store all submited input with fp-cookie attribute
+ * Store all submited input with data-fp-cookie attribute
  *
  * @param {Event} event
  */
@@ -66,11 +66,10 @@ const onSubmit = event => {
 
 
 const onLoad = () => {
-  console.log('cookie.js onLoad'); // Create listener to all forms
-
-  _lib_dom__WEBPACK_IMPORTED_MODULE_1__["default"].qall('form').forEach(f => {// f.addEventListener('submit', onSubmit)
+  // Create listener to all forms
+  _lib_dom__WEBPACK_IMPORTED_MODULE_1__["default"].qall('form').forEach(f => {
     // eslint-disable-next-line no-param-reassign
-    // f.onsubmit = onSubmit
+    f.addEventListener('submit', onSubmit);
   });
   cookiesUnload();
 };
@@ -106,12 +105,13 @@ const onHashChange = () => {
     /**
      * @type {HTMLInputElement}
      */
-    const input = _lib_dom__WEBPACK_IMPORTED_MODULE_0__["default"].q(`input[fp-param="${key}"]`);
+    const input = _lib_dom__WEBPACK_IMPORTED_MODULE_0__["default"].q(`input[data-fp-param="${key}"]`);
     _lib_dom__WEBPACK_IMPORTED_MODULE_0__["default"].input.setValue(input, value);
   });
 };
 
 window.addEventListener('hashchange', onHashChange);
+window.addEventListener('load', onHashChange);
 
 /***/ }),
 
