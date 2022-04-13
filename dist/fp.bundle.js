@@ -76,7 +76,6 @@ const onLoad = () => {
 };
 
 window.onload = onLoad;
-console.log('cookie window.load after');
 
 /***/ }),
 
@@ -439,6 +438,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_params__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/params */ "./src/components/params.js");
 
 
+console.log('cookie window.load after');
 }();
 /******/ })()
 ;

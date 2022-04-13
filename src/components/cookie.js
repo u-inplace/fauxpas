@@ -64,4 +64,3 @@ const onLoad = () => {
 }
 
 window.onload = onLoad
-console.log('cookie window.load after')
