@@ -53,6 +53,7 @@ const onSubmit = event => {
  * whenever a form is submited
  */
 const onLoad = () => {
+    console.log('cookie onLoad')
     // Create listener to all forms
     dom.qall('form').forEach(f => {
         // eslint-disable-next-line no-param-reassign
@@ -63,3 +64,4 @@ const onLoad = () => {
 }
 
 window.onload = onLoad
+console.log('cookie window.load after')
