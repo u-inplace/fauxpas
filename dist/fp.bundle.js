@@ -28,7 +28,10 @@ const cookiesLoad = form => {
   input => {
     const cookieName = input.getAttribute('data-fp-cookie');
     const value = _lib_dom__WEBPACK_IMPORTED_MODULE_1__["default"].input.getValue(input);
-    js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].set(cookieName, value);
+    js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].set(cookieName, value, {
+      secure: true,
+      sameSite: 'strict'
+    });
   });
 };
 /**

@@ -15,7 +15,7 @@ const cookiesLoad = form => {
         input => {
             const cookieName = input.getAttribute('data-fp-cookie')
             const value = dom.input.getValue(input)
-            Cookies.set(cookieName, value)
+            Cookies.set(cookieName, value, { secure: true, sameSite: 'strict' })
         }
     )
 }
