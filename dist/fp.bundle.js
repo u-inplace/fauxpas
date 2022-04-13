@@ -2,6 +2,82 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/components/cookie.js":
+/*!**********************************!*\
+  !*** ./src/components/cookie.js ***!
+  \**********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/dist/js.cookie.mjs");
+/* harmony import */ var _lib_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../lib/dom */ "./src/lib/dom.js");
+
+
+/**
+ * Read all fp-ccokie inputs on form and store in a cookie
+ *
+ * @param {HTMLFormElement} form
+ */
+
+const cookiesLoad = form => {
+  // Read all inputs submited
+  form.querySelectorAll('input[fp-cookie]').forEach(
+  /**
+   * @type {HTMLInputElement}
+   */
+  input => {
+    const cookieName = input.getAttribute('fp-cookie');
+    const value = _lib_dom__WEBPACK_IMPORTED_MODULE_1__["default"].input.getValue(input);
+    js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].set(cookieName, value);
+  });
+};
+/**
+ * Retrieve stored cookies and write into fp-cookie tagged elements
+ */
+
+
+const cookiesUnload = () => {
+  _lib_dom__WEBPACK_IMPORTED_MODULE_1__["default"].qall('[fp-cookie]').forEach(
+  /**
+   * @param {HTMLElement} elem
+   */
+  elem => {
+    const cookieName = elem.getAttribute('fp-cookie');
+    const value = js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].get(cookieName);
+    _lib_dom__WEBPACK_IMPORTED_MODULE_1__["default"].setValue(elem, value);
+  });
+};
+/**
+ * Store all submited input with fp-cookie attribute
+ *
+ * @param {Event} event
+ */
+
+
+const onSubmit = event => {
+  cookiesLoad(event.submitter); // Also update existing elements
+
+  cookiesUnload();
+};
+/**
+ * Load cookies into variables and load set them
+ * whenever a form is submited
+ */
+
+
+const onLoad = () => {
+  // Create listener to all forms
+  _lib_dom__WEBPACK_IMPORTED_MODULE_1__["default"].qall('form').forEach(f => {
+    // eslint-disable-next-line no-param-reassign
+    f.onsubmit = onSubmit;
+  });
+  cookiesUnload();
+};
+
+window.onload = onLoad;
+
+/***/ }),
+
 /***/ "./src/components/params.js":
 /*!**********************************!*\
   !*** ./src/components/params.js ***!
@@ -164,6 +240,20 @@ class Dom {
 const dom = Dom;
 /* harmony default export */ __webpack_exports__["default"] = (dom);
 
+/***/ }),
+
+/***/ "./src/main.js":
+/*!*********************!*\
+  !*** ./src/main.js ***!
+  \*********************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_cookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/cookie */ "./src/components/cookie.js");
+/* harmony import */ var _components_params__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/params */ "./src/components/params.js");
+
+
+
 /***/ })
 
 /******/ 	});
@@ -192,7 +282,49 @@ const dom = Dom;
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/chunk loaded */
+/******/ 	!function() {
+/******/ 		var deferred = [];
+/******/ 		__webpack_require__.O = function(result, chunkIds, fn, priority) {
+/******/ 			if(chunkIds) {
+/******/ 				priority = priority || 0;
+/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
+/******/ 				deferred[i] = [chunkIds, fn, priority];
+/******/ 				return;
+/******/ 			}
+/******/ 			var notFulfilled = Infinity;
+/******/ 			for (var i = 0; i < deferred.length; i++) {
+/******/ 				var chunkIds = deferred[i][0];
+/******/ 				var fn = deferred[i][1];
+/******/ 				var priority = deferred[i][2];
+/******/ 				var fulfilled = true;
+/******/ 				for (var j = 0; j < chunkIds.length; j++) {
+/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every(function(key) { return __webpack_require__.O[key](chunkIds[j]); })) {
+/******/ 						chunkIds.splice(j--, 1);
+/******/ 					} else {
+/******/ 						fulfilled = false;
+/******/ 						if(priority < notFulfilled) notFulfilled = priority;
+/******/ 					}
+/******/ 				}
+/******/ 				if(fulfilled) {
+/******/ 					deferred.splice(i--, 1)
+/******/ 					var r = fn();
+/******/ 					if (r !== undefined) result = r;
+/******/ 				}
+/******/ 			}
+/******/ 			return result;
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
+/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	!function() {
 /******/ 		// define __esModule on exports
@@ -204,17 +336,69 @@ const dom = Dom;
 /******/ 		};
 /******/ 	}();
 /******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	!function() {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"fp": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		__webpack_require__.O.j = function(chunkId) { return installedChunks[chunkId] === 0; };
+/******/ 		
+/******/ 		// install a JSONP callback for chunk loading
+/******/ 		var webpackJsonpCallback = function(parentChunkLoadingFunction, data) {
+/******/ 			var chunkIds = data[0];
+/******/ 			var moreModules = data[1];
+/******/ 			var runtime = data[2];
+/******/ 			// add "moreModules" to the modules object,
+/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			var moduleId, chunkId, i = 0;
+/******/ 			if(chunkIds.some(function(id) { return installedChunks[id] !== 0; })) {
+/******/ 				for(moduleId in moreModules) {
+/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 					}
+/******/ 				}
+/******/ 				if(runtime) var result = runtime(__webpack_require__);
+/******/ 			}
+/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
+/******/ 			for(;i < chunkIds.length; i++) {
+/******/ 				chunkId = chunkIds[i];
+/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 					installedChunks[chunkId][0]();
+/******/ 				}
+/******/ 				installedChunks[chunkId] = 0;
+/******/ 			}
+/******/ 			return __webpack_require__.O(result);
+/******/ 		}
+/******/ 		
+/******/ 		var chunkLoadingGlobal = self["webpackChunkfauxpas"] = self["webpackChunkfauxpas"] || [];
+/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 	}();
+/******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-!function() {
-/*!*********************!*\
-  !*** ./src/main.js ***!
-  \*********************/
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_params__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/params */ "./src/components/params.js");
-
-}();
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendor"], function() { return __webpack_require__("./src/main.js"); })
+/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
+/******/ 	
 /******/ })()
 ;
 //# sourceMappingURL=fp.bundle.js.map
