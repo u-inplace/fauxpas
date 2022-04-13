@@ -86,6 +86,7 @@ window.addEventListener('load', onLoad);
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../lib/dom */ "./src/lib/dom.js");
+/* eslint-disable no-var */
 
 /**
  * Handles URL changes
@@ -108,11 +109,14 @@ const onHashChange = () => {
     const input = _lib_dom__WEBPACK_IMPORTED_MODULE_0__["default"].q(`input[data-fp-param="${key}"]`);
     _lib_dom__WEBPACK_IMPORTED_MODULE_0__["default"].input.setValue(input, value);
   });
-};
+}; // eslint-disable-next-line no-use-before-define
 
-window.addEventListener('hashchange', onHashChange);
-window.addEventListener('load', onHashChange);
-document.addEventListener('DOMContentLoaded', onHashChange);
+
+var Webflow = Webflow || window.Webflow || [];
+Webflow.push(() => {
+  window.addEventListener('hashchange', onHashChange);
+  window.addEventListener('load', onHashChange);
+});
 
 /***/ }),
 

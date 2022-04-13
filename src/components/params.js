@@ -1,3 +1,4 @@
+/* eslint-disable no-var */
 import dom from '../lib/dom'
 
 /**
@@ -23,6 +24,9 @@ const onHashChange = () => {
     })
 }
 
-window.addEventListener('hashchange', onHashChange)
-window.addEventListener('load', onHashChange)
-document.addEventListener('DOMContentLoaded', onHashChange)
+// eslint-disable-next-line no-use-before-define
+var Webflow = Webflow || window.Webflow || []
+Webflow.push(() => {
+    window.addEventListener('hashchange', onHashChange)
+    window.addEventListener('load', onHashChange)
+})
