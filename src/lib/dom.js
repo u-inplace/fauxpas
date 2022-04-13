@@ -101,6 +101,7 @@ class Dom {
                 const radio = Dom.q(`input[name="${radioName}"][value="${value}"]`)
                 radio.checked &&= false
 
+                // Voodoo to make the click also apply the correct classes
                 setTimeout(() => radio?.click(), 300)
             }
 
