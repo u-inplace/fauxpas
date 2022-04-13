@@ -22,8 +22,9 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 const onHashChange = () => {
+  // Split to remove # from location.hash
   // eslint-disable-next-line no-restricted-globals
-  const params = new URLSearchParams(location.hash);
+  const params = new URLSearchParams(location.hash.split('?')?.[1]);
   params.forEach((value, key) => {
     /**
      * @type {HTMLInputElement}
