@@ -30,8 +30,8 @@ const core = {
     entry: { fp: './src/main.js' },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].bundle.js',
-        sourceMapFilename: '[name].bundle.js.map'
+        filename: '[name].js',
+        sourceMapFilename: '[name].js.map'
     }
 }
 
