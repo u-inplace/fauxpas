@@ -19,13 +19,11 @@ __webpack_require__.r(__webpack_exports__);
  * Ex: acme.con/food?include-cat=true
  * It will search for an input field with attribute fp-param = include-cat
  * and set its value to true
- *
- * @param {HashChangeEvent} event
  */
 
-const onHashChange = event => {
-  const url = new URL(event.newURL);
-  const params = new URLSearchParams(url.search);
+const onHashChange = () => {
+  // eslint-disable-next-line no-restricted-globals
+  const params = new URLSearchParams(location.hash);
   params.forEach((value, key) => {
     /**
      * @type {HTMLInputElement}

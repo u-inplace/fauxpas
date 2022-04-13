@@ -2,8 +2,7 @@
     "env": {
         "es2020": true,
         "es6": true,
-        "browser": true,
-        "jquery": true
+        "browser": true
     },
     "parser": "@babel/eslint-parser",
     "extends": ["airbnb-base", "prettier", "plugin:jsdoc/recommended"],
