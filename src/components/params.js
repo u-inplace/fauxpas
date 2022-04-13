@@ -9,10 +9,10 @@ import dom from '../lib/dom'
  * It will search for an input field with attribute fp-param = include-cat
  * and set its value to true
  *
- * @param {string} newURL New hash URL
+ * @param {HashChangeEvent} event
  */
-const onHashChange = newURL => {
-    const url = new URL(newURL)
+const onHashChange = event => {
+    const url = new URL(event.newURL)
     const params = new URLSearchParams(url.search)
 
     params.forEach((value, key) => {

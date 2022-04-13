@@ -55,6 +55,7 @@
         "no-self-assign": ["error", { "props": false }],
         "constructor-super": "error",
         "jsdoc/require-returns-description": "off",
+        "jsdoc/require-param-description": "off",
         "prefer-arrow/prefer-arrow-functions": [
             "error",
             {
