@@ -12,7 +12,7 @@ import dom from '../lib/dom'
 const onHashChange = () => {
     // Split to remove # from location.hash
     // eslint-disable-next-line no-restricted-globals
-    const params = new URLSearchParams(location.hash.split('?')?.[1])
+    const params = new URLSearchParams(location.search || location.hash.split('?')?.[1])
 
     params.forEach((value, key) => {
         /**
