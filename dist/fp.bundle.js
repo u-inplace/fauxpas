@@ -75,7 +75,7 @@ const onLoad = () => {
   cookiesUnload();
 };
 
-document.addEventListener('load', onLoad);
+window.addEventListener('load', onLoad);
 
 /***/ }),
 
@@ -111,7 +111,7 @@ const onHashChange = () => {
   });
 };
 
-document.addEventListener('hashchange', onHashChange);
+window.addEventListener('hashchange', onHashChange);
 
 /***/ }),
 

@@ -23,4 +23,4 @@ const onHashChange = () => {
     })
 }
 
-document.addEventListener('hashchange', onHashChange)
+window.addEventListener('hashchange', onHashChange)
