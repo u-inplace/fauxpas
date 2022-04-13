@@ -75,8 +75,7 @@ const onLoad = () => {
   cookiesUnload();
 };
 
-console.log('cookie.js');
-window.onload = onLoad;
+window.addEventListener('load', onLoad);
 
 /***/ }),
 
@@ -112,7 +111,7 @@ const onHashChange = () => {
   });
 };
 
-window.onhashchange = onHashChange;
+window.addEventListener('hashchange', onHashChange);
 
 /***/ }),
 
@@ -439,8 +438,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_params__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/params */ "./src/components/params.js");
 
 
-console.log('main.js');
-window.addEventListener('load', () => console.log('mian.js onload'));
 }();
 /******/ })()
 ;

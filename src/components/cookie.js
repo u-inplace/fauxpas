@@ -63,5 +63,4 @@ const onLoad = () => {
     cookiesUnload()
 }
 
-console.log('cookie.js')
-window.onload = onLoad
+window.addEventListener('load', onLoad)
