@@ -44,7 +44,7 @@ const cookiesUnload = () => {
   elem => {
     const cookieName = elem.getAttribute('fp-cookie');
     const value = js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].get(cookieName);
-    _lib_dom__WEBPACK_IMPORTED_MODULE_1__["default"].setValue(elem, value);
+    value && _lib_dom__WEBPACK_IMPORTED_MODULE_1__["default"].setValue(elem, value);
   });
 };
 /**
@@ -70,7 +70,7 @@ const onLoad = () => {
 
   _lib_dom__WEBPACK_IMPORTED_MODULE_1__["default"].qall('form').forEach(f => {
     // eslint-disable-next-line no-param-reassign
-    f.onsubmit = onSubmit;
+    f.addEventListener('submit', onSubmit);
   });
   cookiesUnload();
 };

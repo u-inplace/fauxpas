@@ -31,7 +31,7 @@ const cookiesUnload = () => {
         elem => {
             const cookieName = elem.getAttribute('fp-cookie')
             const value = Cookies.get(cookieName)
-            dom.setValue(elem, value)
+            value && dom.setValue(elem, value)
         }
     )
 }
@@ -57,7 +57,7 @@ const onLoad = () => {
     // Create listener to all forms
     dom.qall('form').forEach(f => {
         // eslint-disable-next-line no-param-reassign
-        f.onsubmit = onSubmit
+        f.addEventListener('submit', onSubmit)
     })
 
     cookiesUnload()
