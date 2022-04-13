@@ -42,7 +42,8 @@ const cookiesUnload = () => {
  * @param {Event} event
  */
 const onSubmit = event => {
-    cookiesLoad(event.submitter)
+    // Submitter is the input button type=submit
+    cookiesLoad(event.submitter.parentElement)
 
     // Also update existing elements
     cookiesUnload()

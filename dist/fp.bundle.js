@@ -55,7 +55,8 @@ const cookiesUnload = () => {
 
 
 const onSubmit = event => {
-  cookiesLoad(event.submitter); // Also update existing elements
+  // Submitter is the input button type=submit
+  cookiesLoad(event.submitter.parentElement); // Also update existing elements
 
   cookiesUnload();
 };
