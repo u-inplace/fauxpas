@@ -30,6 +30,7 @@ const onHashChange = () => {
      * @type {HTMLInputElement}
      */
     const input = _lib_dom__WEBPACK_IMPORTED_MODULE_0__["default"].q(`input[fp-param="${key}"]`);
+    if (!input) return;
     if (input.type !== 'radio') input.value = value;else {
       // Find the radio with value to be checked
       const radio = _lib_dom__WEBPACK_IMPORTED_MODULE_0__["default"].q(`input[fp-param="${key}"][value="${value}"]`);
