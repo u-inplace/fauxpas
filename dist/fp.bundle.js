@@ -68,10 +68,9 @@ const onSubmit = event => {
 const onLoad = () => {
   console.log('cookie.js onLoad'); // Create listener to all forms
 
-  _lib_dom__WEBPACK_IMPORTED_MODULE_1__["default"].qall('form').forEach(f => {
-    // f.addEventListener('submit', onSubmit)
+  _lib_dom__WEBPACK_IMPORTED_MODULE_1__["default"].qall('form').forEach(f => {// f.addEventListener('submit', onSubmit)
     // eslint-disable-next-line no-param-reassign
-    f.onsubmit = onSubmit;
+    // f.onsubmit = onSubmit
   });
   cookiesUnload();
 };

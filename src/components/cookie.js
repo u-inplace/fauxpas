@@ -58,7 +58,7 @@ const onLoad = () => {
     dom.qall('form').forEach(f => {
         // f.addEventListener('submit', onSubmit)
         // eslint-disable-next-line no-param-reassign
-        f.onsubmit = onSubmit
+        // f.onsubmit = onSubmit
     })
 
     cookiesUnload()
