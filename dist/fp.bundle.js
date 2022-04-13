@@ -30,12 +30,7 @@ const onHashChange = () => {
      * @type {HTMLInputElement}
      */
     const input = _lib_dom__WEBPACK_IMPORTED_MODULE_0__["default"].q(`input[fp-param="${key}"]`);
-    if (!input) return;
-    if (input.type !== 'radio') input.value = value;else {
-      // Find the radio with value to be checked
-      const radio = _lib_dom__WEBPACK_IMPORTED_MODULE_0__["default"].q(`input[fp-param="${key}"][value="${value}"]`);
-      radio.click();
-    }
+    _lib_dom__WEBPACK_IMPORTED_MODULE_0__["default"].input.setValue(input, value);
   });
 };
 
@@ -50,6 +45,8 @@ window.onhashchange = onHashChange;
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
+/* eslint-disable no-param-reassign */
+
 /**
  * Dom related methods
  */
@@ -74,7 +71,94 @@ class Dom {
   static qall(query) {
     return document.querySelectorAll(query);
   }
+  /**
+   * Updates a HTML element value or text
+   *
+   * @param {HTMLElement} elem
+   * @param {*} value
+   */
 
+
+  static setValue(elem, value) {
+    if (!elem) return;
+
+    switch (elem.type) {
+      case 'input':
+        this.input.setValue(elem, value);
+        break;
+
+      default:
+        elem.innerText = value;
+        break;
+    }
+  }
+
+  static input = class {
+    /**
+     * Set value on input field. Handles checkbox and radio
+     * buttons with click instead of updating value only
+     *
+     * @param {HTMLInputElement} input
+     * @param {any} value
+     */
+    static setValue(input, value) {
+      if (!input) return;
+
+      switch (input.type) {
+        case 'radio':
+          // Find the element to be checked within the same radio group name
+          this.radio.setValue(input.name, value);
+          break;
+
+        case 'checkbox':
+          input.click();
+          break;
+
+        default:
+          input.value = value;
+          break;
+      }
+    }
+    /**
+     * Get value from HTML input element
+     *
+     * @param {HTMLElement} input
+     * @returns {any}
+     */
+    // eslint-disable-next-line consistent-return
+
+
+    static getValue(input) {
+      if (input) switch (input.type) {
+        case 'radio':
+          return this.radio.getValue(input);
+
+        case 'checkbox':
+          return input.checked;
+
+        default:
+          return input.value;
+      }
+    }
+
+    static radio = class {
+      /**
+       * Check a value in a radio button group
+       *
+       * @param {string} radioName
+       * @param {string} value
+       */
+      static setValue(radioName, value) {
+        const radio = Dom.q(`input[name="${radioName}"][value="${value}"]`);
+        radio.click();
+      }
+
+      static getValue(radioName) {
+        return Dom.q(`input[name="${radioName}"]:checked`)?.value;
+      }
+
+    };
+  };
 }
 
 const dom = Dom;

@@ -55,6 +55,7 @@
         "constructor-super": "error",
         "jsdoc/require-returns-description": "off",
         "jsdoc/require-param-description": "off",
+        "max-classes-per-file": "off",
         "prefer-arrow/prefer-arrow-functions": [
             "error",
             {

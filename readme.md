@@ -1,6 +1,6 @@
-# Fauxpas Webflow package
+# Faux-pas Webflow package
 
-## URL Parameters
+## URL Parameters `fp-param`
 
 Set parameters in input fields with attributes
 `fp-param :"paramName"`
@@ -23,3 +23,7 @@ For radio buttons, the URL paramater should be the group `name` and an action `c
     <input type="radio" id="louie" name="drone" value="louie" fp-param="drone"> // Will be checked
 </body>
 ```
+
+## Cookies `fp-cookie`
+
+Stores a cookie on input field when a form is submited and write its value when a page load, on input fields or as `htmlText` in other fields.
