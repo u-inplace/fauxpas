@@ -97,8 +97,8 @@ class Dom {
              */
             static setValue(radioName, value) {
                 const radio = Dom.q(`input[name="${radioName}"][value="${value}"]`)
-                radio?.checked = false
-                radio?..click()
+                radio.checked &&= false
+                radio?.click()
             }
 
             static getValue(radioName) {

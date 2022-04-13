@@ -1,4 +1,5 @@
 /******/ (function() { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/components/cookie.js":
@@ -7,7 +8,6 @@
   \**********************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/dist/js.cookie.mjs");
 /* harmony import */ var _lib_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../lib/dom */ "./src/lib/dom.js");
@@ -84,7 +84,6 @@ window.addEventListener('load', onLoad);
   \**********************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../lib/dom */ "./src/lib/dom.js");
 
@@ -120,9 +119,129 @@ window.addEventListener('load', onHashChange);
 /*!************************!*\
   !*** ./src/lib/dom.js ***!
   \************************/
-/***/ (function() {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/ulysses/Code/projects/inplace/fauxpas/src/lib/dom.js: Invalid left-hand side in assignment expression. (100:16)\n\n\u001b[0m \u001b[90m  98 |\u001b[39m             \u001b[36mstatic\u001b[39m setValue(radioName\u001b[33m,\u001b[39m value) {\u001b[0m\n\u001b[0m \u001b[90m  99 |\u001b[39m                 \u001b[36mconst\u001b[39m radio \u001b[33m=\u001b[39m \u001b[33mDom\u001b[39m\u001b[33m.\u001b[39mq(\u001b[32m`input[name=\"${radioName}\"][value=\"${value}\"]`\u001b[39m)\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 100 |\u001b[39m                 radio\u001b[33m?\u001b[39m\u001b[33m.\u001b[39mchecked \u001b[33m=\u001b[39m \u001b[36mfalse\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m     |\u001b[39m                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 101 |\u001b[39m                 radio\u001b[33m?\u001b[39m\u001b[33m.\u001b[39m\u001b[33m.\u001b[39mclick()\u001b[0m\n\u001b[0m \u001b[90m 102 |\u001b[39m             }\u001b[0m\n\u001b[0m \u001b[90m 103 |\u001b[39m\u001b[0m\n    at instantiate (/Users/ulysses/Code/projects/inplace/fauxpas/node_modules/@babel/parser/lib/index.js:72:32)\n    at constructor (/Users/ulysses/Code/projects/inplace/fauxpas/node_modules/@babel/parser/lib/index.js:358:12)\n    at Parser.raise (/Users/ulysses/Code/projects/inplace/fauxpas/node_modules/@babel/parser/lib/index.js:3335:19)\n    at Parser.checkLVal (/Users/ulysses/Code/projects/inplace/fauxpas/node_modules/@babel/parser/lib/index.js:12002:12)\n    at Parser.parseMaybeAssign (/Users/ulysses/Code/projects/inplace/fauxpas/node_modules/@babel/parser/lib/index.js:12246:12)\n    at Parser.parseExpressionBase (/Users/ulysses/Code/projects/inplace/fauxpas/node_modules/@babel/parser/lib/index.js:12150:23)\n    at /Users/ulysses/Code/projects/inplace/fauxpas/node_modules/@babel/parser/lib/index.js:12144:39\n    at Parser.allowInAnd (/Users/ulysses/Code/projects/inplace/fauxpas/node_modules/@babel/parser/lib/index.js:14236:16)\n    at Parser.parseExpression (/Users/ulysses/Code/projects/inplace/fauxpas/node_modules/@babel/parser/lib/index.js:12144:17)\n    at Parser.parseStatementContent (/Users/ulysses/Code/projects/inplace/fauxpas/node_modules/@babel/parser/lib/index.js:14676:23)");
+__webpack_require__.r(__webpack_exports__);
+/* eslint-disable no-param-reassign */
+
+/**
+ * Dom related methods
+ */
+class Dom {
+  /**
+   * Query selector
+   *
+   * @param {string} query Dom query string
+   * @returns {Element}
+   */
+  static q(query) {
+    return document.querySelector(query);
+  }
+  /**
+   * Query selector all
+   *
+   * @param {string} query Dom query string
+   * @returns {NodeList}
+   */
+
+
+  static qall(query) {
+    return document.querySelectorAll(query);
+  }
+  /**
+   * Updates a HTML element value or text
+   *
+   * @param {HTMLElement} elem
+   * @param {*} value
+   */
+
+
+  static setValue(elem, value) {
+    if (!elem) return;
+
+    switch (elem.type) {
+      case 'input':
+        this.input.setValue(elem, value);
+        break;
+
+      default:
+        elem.innerText = value;
+        break;
+    }
+  }
+
+  static input = class {
+    /**
+     * Set value on input field. Handles checkbox and radio
+     * buttons with click instead of updating value only
+     *
+     * @param {HTMLInputElement} input
+     * @param {any} value
+     */
+    static setValue(input, value) {
+      if (!input) return;
+
+      switch (input.type) {
+        case 'radio':
+          // Find the element to be checked within the same radio group name
+          this.radio.setValue(input.name, value);
+          break;
+
+        case 'checkbox':
+          input.checked = false;
+          input.click();
+          break;
+
+        default:
+          input.value = value;
+          break;
+      }
+    }
+    /**
+     * Get value from HTML input element
+     *
+     * @param {HTMLElement} input
+     * @returns {any}
+     */
+    // eslint-disable-next-line consistent-return
+
+
+    static getValue(input) {
+      if (input) switch (input.type) {
+        case 'radio':
+          return this.radio.getValue(input);
+
+        case 'checkbox':
+          return input.checked;
+
+        default:
+          return input.value;
+      }
+    }
+
+    static radio = class {
+      /**
+       * Check a value in a radio button group
+       *
+       * @param {string} radioName
+       * @param {string} value
+       */
+      static setValue(radioName, value) {
+        const radio = Dom.q(`input[name="${radioName}"][value="${value}"]`);
+        radio.checked &&= false;
+        radio?.click();
+      }
+
+      static getValue(radioName) {
+        return Dom.q(`input[name="${radioName}"]:checked`)?.value;
+      }
+
+    };
+  };
+}
+
+const dom = Dom;
+/* harmony default export */ __webpack_exports__["default"] = (dom);
 
 /***/ }),
 
@@ -132,7 +251,6 @@ throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index
   \***************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /*! js-cookie v3.0.1 | MIT */
 /* eslint-disable no-var */
@@ -312,9 +430,8 @@ var api = init(defaultConverter, { path: '/' });
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 !function() {
-"use strict";
 /*!*********************!*\
   !*** ./src/main.js ***!
   \*********************/
