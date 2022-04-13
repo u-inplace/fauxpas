@@ -56,8 +56,9 @@ const onLoad = () => {
     console.log('cookie.js onLoad')
     // Create listener to all forms
     dom.qall('form').forEach(f => {
+        // f.addEventListener('submit', onSubmit)
         // eslint-disable-next-line no-param-reassign
-        f.addEventListener('submit', onSubmit)
+        f.onsubmit = onSubmit
     })
 
     cookiesUnload()
