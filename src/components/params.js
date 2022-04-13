@@ -25,3 +25,4 @@ const onHashChange = () => {
 
 window.addEventListener('hashchange', onHashChange)
 window.addEventListener('load', onHashChange)
+document.addEventListener('DOMContentLoaded', onHashChange)
