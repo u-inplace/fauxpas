@@ -440,8 +440,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 console.log('main.js');
-
-window.onload = () => console.log('mian.js onload');
+window.addEventListener('load', () => console.log('mian.js onload'));
 }();
 /******/ })()
 ;
