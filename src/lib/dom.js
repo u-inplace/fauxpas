@@ -80,7 +80,7 @@ class Dom {
             if (input)
                 switch (input.type) {
                     case 'radio':
-                        return this.radio.getValue(input)
+                        return this.radio.getValue(input.name)
                     case 'checkbox':
                         return input.checked
                     default:
