@@ -75,9 +75,8 @@ const onLoad = () => {
   cookiesUnload();
 };
 
-console.log('cookie.js before window.onload');
+console.log('cookie.js');
 window.onload = onLoad;
-console.log('cookie.js after window.onload');
 
 /***/ }),
 
@@ -441,6 +440,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 console.log('main.js');
+
+window.onload = () => console.log('mian.js onload');
 }();
 /******/ })()
 ;

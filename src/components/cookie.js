@@ -63,6 +63,5 @@ const onLoad = () => {
     cookiesUnload()
 }
 
-console.log('cookie.js before window.onload')
+console.log('cookie.js')
 window.onload = onLoad
-console.log('cookie.js after window.onload')
