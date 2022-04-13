@@ -91,6 +91,8 @@ class Dom {
         static radio = class {
             /**
              * Check a value in a radio button group
+             * For some wierd reason click() does not add decoration to input as if it was
+             * clicked
              *
              * @param {string} radioName
              * @param {string} value
@@ -98,7 +100,8 @@ class Dom {
             static setValue(radioName, value) {
                 const radio = Dom.q(`input[name="${radioName}"][value="${value}"]`)
                 radio.checked &&= false
-                radio?.click()
+
+                setTimeout(() => radio?.click(), 300)
             }
 
             static getValue(radioName) {
