@@ -60,6 +60,7 @@ class Dom {
                     this.radio.setValue(input.name, value)
                     break
                 case 'checkbox':
+                    input.checked = false
                     input.click()
                     break
                 default:
@@ -96,7 +97,8 @@ class Dom {
              */
             static setValue(radioName, value) {
                 const radio = Dom.q(`input[name="${radioName}"][value="${value}"]`)
-                radio.click()
+                radio?.checked = false
+                radio?..click()
             }
 
             static getValue(radioName) {
