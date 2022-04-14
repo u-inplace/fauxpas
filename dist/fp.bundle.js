@@ -183,23 +183,15 @@ const setupWatchers = () => {
    * @param {HTMLInputElement} input
    */
   const setupInput = input => {
-    const validationType = input.getAttribute('data-fp-validation');
-    let validator; // Only setup if dependend attribute is found
+    const validations = input.getAttribute('data-fp-validation')?.split(','); // Only setup if dependend attribute is found
 
-    switch (validationType) {
-      case 'maxlength':
-        if (input.getAttribute('maxlength')) validator = maxLength;
-        break;
-
-      case 'inputmode':
-        if (input.getAttribute('inputmode')) validator = inputMode;
-        break;
-
-      default:
-        break;
-    }
-
-    validator && input.addEventListener('input', validator);
+    validations.forEach(v => {
+      const validators = {
+        maxlength: maxLength,
+        inputmode: inputMode
+      };
+      input.getAttribute(v) && input.addEventListener('input', validators[v]);
+    });
   };
 
   _lib_dom__WEBPACK_IMPORTED_MODULE_0__["default"].qall('input[data-fp-validation]').forEach(input => setupInput(input));
