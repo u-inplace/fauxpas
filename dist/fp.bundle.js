@@ -158,7 +158,7 @@ const inputMode = e => {
   } = input;
 
   switch (input.inputMode) {
-    case 'number':
+    case 'numeric':
       input.value = value.replace(/\D/g, '');
       break;
 
