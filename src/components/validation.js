@@ -1,10 +1,6 @@
 import dom from '../lib/dom'
 
 /**
- * Validations for input fields
- */
-
-/**
  * Slice input if maxlength is reached
  *
  * @param {InputEvent} e
@@ -43,42 +39,32 @@ const inputMode = e => {
  *  inputmode: will only allow input of type specified on inputmode
  */
 const setupWatchers = () => {
-    dom.qall('input[data-fp-validation]').forEach(
-        /**
-         * @type {HTMLInputElement}
-         */
-        input => {
-            const validationType = input.getAttribute('data-fp-validation')
-            let validator
+    /**
+     * Setup watcher for input
+     *
+     * @param {HTMLInputElement} input
+     */
+    const setupInput = input => {
+        const validationType = input.getAttribute('data-fp-validation')
+        let validator
 
-            // Only setup if dependend attribute is found
-            switch (validationType) {
-                case 'maxlength':
-                    if (input.getAttribute('maxlength')) validator = maxLength
-                    break
+        // Only setup if dependend attribute is found
+        switch (validationType) {
+            case 'maxlength':
+                if (input.getAttribute('maxlength')) validator = maxLength
+                break
 
-                case 'inputmode':
-                    if (input.getAttribute('inputmode')) validator = inputMode
-                    break
-                default:
-                    break
-            }
-
-            validator && input.addEventListener('input', validator)
+            case 'inputmode':
+                if (input.getAttribute('inputmode')) validator = inputMode
+                break
+            default:
+                break
         }
-    )
 
-    // Split to remove # from location.hash
-    // eslint-disable-next-line no-restricted-globals
-    const params = new URLSearchParams(location.search || location.hash.split('?')?.[1])
+        validator && input.addEventListener('input', validator)
+    }
 
-    params.forEach((value, key) => {
-        /**
-         * @type {HTMLInputElement}
-         */
-        const input = dom.q(`input[data-fp-param="${key}"]`)
-        dom.input.setValue(input, value)
-    })
+    dom.qall('input[data-fp-validation]').forEach(input => setupInput(input))
 }
 
 window.addEventListener('load', setupWatchers)
