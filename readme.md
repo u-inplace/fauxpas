@@ -53,6 +53,5 @@ Ony works with `inputMode="number"`
     type="number"
     maxlength="12"
     inputmode="number"
-    data-fp-validation="maxlength"
-    data-fp-param="inputmode" />
+    data-fp-validation="maxlength,inputmode"  />
 ```
