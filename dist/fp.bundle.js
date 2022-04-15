@@ -190,7 +190,7 @@ const setupWatchers = () => {
         maxlength: maxLength,
         inputmode: inputMode
       };
-      input.getAttribute(v) && input.addEventListener('input', validators[v]);
+      input.getAttribute(v) && input.addEventListener('input', validators[v], true);
     });
   };
 
