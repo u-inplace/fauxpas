@@ -13,11 +13,53 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../lib/dom */ "./src/lib/dom.js");
 
 
+
+class FpCookie {
+  static STORE = '__fp_store';
+  /**
+   * Store a cookie
+   * @param {string} name
+   * @param {any} value
+   */
+
+  static set(name, value) {
+    this.store[name] = value;
+    js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].set(this.STORE, this.store, {
+      secure: true,
+      sameSite: 'strict'
+    });
+  }
+  /**
+   * Return a cookie from store
+   * @param {string} name
+   * @returns {any}
+   */
+
+
+  static get(name) {
+    return this.store?.[name];
+  }
+  /**
+   * Delete a cookie
+   * @param {string} name
+   */
+
+
+  static clear() {
+    js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].remove(this.STORE);
+  }
+
+  static get store() {
+    return js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].get(this.STORE) || {};
+  }
+
+}
 /**
  * Read all fp-ccokie inputs on form and store in a cookie
  *
  * @param {HTMLFormElement} form
  */
+
 
 const cookiesLoad = form => {
   // Read all inputs submited
@@ -28,10 +70,7 @@ const cookiesLoad = form => {
   input => {
     const cookieName = input.getAttribute('data-fp-cookie');
     const value = _lib_dom__WEBPACK_IMPORTED_MODULE_1__["default"].input.getValue(input);
-    js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].set(cookieName, value, {
-      secure: true,
-      sameSite: 'strict'
-    });
+    FpCookie.set(cookieName, value);
   });
 };
 /**
@@ -46,7 +85,7 @@ const cookiesUnload = () => {
    */
   elem => {
     const cookieName = elem.getAttribute('data-fp-cookie');
-    const value = js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].get(cookieName);
+    const value = FpCookie.get(cookieName);
     value && _lib_dom__WEBPACK_IMPORTED_MODULE_1__["default"].setValue(elem, value);
   });
 };
