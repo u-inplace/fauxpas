@@ -27,7 +27,7 @@ class FpCookie {
      * Delete a cookie
      * @param {string} name
      */
-    static clear(name) {
+    static clear() {
         Cookies.remove(this.STORE)
     }
 
