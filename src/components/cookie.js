@@ -1,6 +1,41 @@
 import Cookies from 'js-cookie'
 import dom from '../lib/dom'
 
+class FpCookie {
+    static STORE = '__fp_store'
+
+    /**
+     * Store a cookie
+     * @param {string} name
+     * @param {any} value
+     */
+    static set(name, value) {
+        this.store[name] = value
+        Cookies.set(this.STORE, this.store, { secure: true, sameSite: 'strict' })
+    }
+
+    /**
+     * Return a cookie from store
+     * @param {string} name
+     * @returns {any}
+     */
+    static get(name) {
+        return this.store?.[name]
+    }
+
+    /**
+     * Delete a cookie
+     * @param {string} name
+     */
+    static clear(name) {
+        Cookies.remove(this.STORE)
+    }
+
+    static get store() {
+        return Cookies.get(this.STORE) || {}
+    }
+}
+
 /**
  * Read all fp-ccokie inputs on form and store in a cookie
  *
@@ -15,7 +50,7 @@ const cookiesLoad = form => {
         input => {
             const cookieName = input.getAttribute('data-fp-cookie')
             const value = dom.input.getValue(input)
-            Cookies.set(cookieName, value, { secure: true, sameSite: 'strict' })
+            FpCookie.set(cookieName, value)
         }
     )
 }
@@ -30,7 +65,7 @@ const cookiesUnload = () => {
          */
         elem => {
             const cookieName = elem.getAttribute('data-fp-cookie')
-            const value = Cookies.get(cookieName)
+            const value = FpCookie.get(cookieName)
             value && dom.setValue(elem, value)
         }
     )
