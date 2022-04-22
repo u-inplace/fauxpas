@@ -83,7 +83,8 @@ const onSubmit = event => {
     cookiesLoad(event.submitter.form)
 
     // Also update existing elements
-    cookiesUnload()
+    // FIXME: does not work
+    // cookiesUnload()
 }
 
 /**
