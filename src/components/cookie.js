@@ -89,14 +89,14 @@ const onSubmit = event => {
  * Load cookies into variables and load set them
  * whenever a form is submited
  */
-const onLoad = () => {
-    // Create listener to all forms
-    dom.qall('form').forEach(f => {
-        // eslint-disable-next-line no-param-reassign
-        f.addEventListener('submit', onSubmit, true)
-    })
+// const onLoad = () => {
+// Create listener to all forms
+dom.qall('form').forEach(f => {
+    // eslint-disable-next-line no-param-reassign
+    f.addEventListener('submit', onSubmit, true)
+})
 
-    cookiesUnload()
-}
+cookiesUnload()
+// }
 
-window.addEventListener('load', onLoad, true)
+// window.addEventListener('load', onLoad, true)
