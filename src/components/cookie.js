@@ -12,7 +12,7 @@ class FpCookie {
     static set(name, value) {
         const store = this.store
         store[name] = value
-        Cookies.set(this.STORE, store, { secure: true, sameSite: 'strict' })
+        Cookies.set(this.STORE, JSON.stringify(store), { secure: true, sameSite: 'strict' })
     }
 
     /**
@@ -33,7 +33,8 @@ class FpCookie {
     }
 
     static get store() {
-        return Cookies.get(this.STORE) || {}
+        const store = Cookies.get(this.STORE)
+        return store ? JSON.parse(store) : {}
     }
 }
 

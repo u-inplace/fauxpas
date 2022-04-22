@@ -25,7 +25,7 @@ class FpCookie {
   static set(name, value) {
     const store = this.store;
     store[name] = value;
-    js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].set(this.STORE, store, {
+    js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].set(this.STORE, JSON.stringify(store), {
       secure: true,
       sameSite: 'strict'
     });
@@ -51,7 +51,8 @@ class FpCookie {
   }
 
   static get store() {
-    return js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].get(this.STORE) || {};
+    const store = js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].get(this.STORE);
+    return store ? JSON.parse(store) : {};
   }
 
 }
