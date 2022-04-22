@@ -113,7 +113,7 @@ const onLoad = () => {
   // Create listener to all forms
   _lib_dom__WEBPACK_IMPORTED_MODULE_1__["default"].qall('form').forEach(f => {
     // eslint-disable-next-line no-param-reassign
-    f.addEventListener('submit', onSubmit, true);
+    f.addEventListener('submit', onSubmit);
   });
   cookiesUnload();
 };
