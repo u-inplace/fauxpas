@@ -10,8 +10,9 @@ class FpCookie {
      * @param {any} value
      */
     static set(name, value) {
-        this.store[name] = value
-        Cookies.set(this.STORE, this.store, { secure: true, sameSite: 'strict' })
+        const store = this.store
+        store[name] = value
+        Cookies.set(this.STORE, store, { secure: true, sameSite: 'strict' })
     }
 
     /**

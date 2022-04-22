@@ -23,8 +23,9 @@ class FpCookie {
    */
 
   static set(name, value) {
-    this.store[name] = value;
-    js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].set(this.STORE, this.store, {
+    const store = this.store;
+    store[name] = value;
+    js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].set(this.STORE, store, {
       secure: true,
       sameSite: 'strict'
     });
