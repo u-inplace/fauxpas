@@ -97,3 +97,6 @@ dom.qall('form').forEach(f => {
     f.addEventListener('submit', onSubmit, true)
 })
 cookiesUnload()
+
+// Makes FpCookie available
+window.FpCookie = FpCookie
