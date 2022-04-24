@@ -6,17 +6,19 @@ class FpCookie {
 
     /**
      * Store a cookie
+     *
      * @param {string} name
      * @param {any} value
      */
     static set(name, value) {
-        const store = this.store
+        const { store } = this
         store[name] = value
         Cookies.set(this.STORE, JSON.stringify(store), { secure: true, sameSite: 'strict' })
     }
 
     /**
      * Return a cookie from store
+     *
      * @param {string} name
      * @returns {any}
      */
@@ -26,7 +28,6 @@ class FpCookie {
 
     /**
      * Delete a cookie
-     * @param {string} name
      */
     static clear() {
         Cookies.remove(this.STORE)
