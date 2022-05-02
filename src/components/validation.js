@@ -61,4 +61,8 @@ const setupWatchers = () => {
     dom.qall('input[data-fp-validation]').forEach(input => setupInput(input))
 }
 
-window.addEventListener('load', setupWatchers)
+const FpValidation = () => {
+    window.addEventListener('load', setupWatchers)
+}
+
+export default FpValidation

@@ -37,6 +37,12 @@ class FpCookie {
         const store = Cookies.get(this.STORE)
         return store ? JSON.parse(store) : {}
     }
+
+    static get isEmpty() {
+        const { store } = this
+
+        return Object.keys(store) === 0
+    }
 }
 
 /**
@@ -88,15 +94,24 @@ const onSubmit = event => {
     // cookiesUnload()
 }
 
-/**
- * Load cookies into variables and load set them
- * whenever a form is submited
- */
-dom.qall('form').forEach(f => {
-    // eslint-disable-next-line no-param-reassign
-    f.addEventListener('submit', onSubmit, true)
-})
-cookiesUnload()
+const FpCookies = () => {
+    /**
+     * Load cookies into variables and load set them
+     * whenever a form is submited
+     */
+    dom.qall('form').forEach(f => {
+        // eslint-disable-next-line no-param-reassign
+        f.addEventListener('submit', onSubmit, true)
+    })
 
-// Makes FpCookie available
-window.FpCookie = FpCookie
+    // Unloads if store is not empty
+    // Otherwise, will try to load current values at page load
+    // Combo with FpParams
+    if (FpCookie.isEmpty) cookiesLoad()
+    else cookiesUnload()
+
+    // Makes FpCookie available
+    window.FpCookie = FpCookie
+}
+
+export default FpCookies

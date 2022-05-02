@@ -23,5 +23,9 @@ const onHashChange = () => {
     })
 }
 
-window.addEventListener('hashchange', onHashChange)
-window.addEventListener('load', onHashChange)
+const FpParams = () => {
+    window.addEventListener('hashchange', onHashChange)
+    window.addEventListener('load', onHashChange)
+}
+
+export default FpParams
