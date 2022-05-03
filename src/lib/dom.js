@@ -60,8 +60,10 @@ class Dom {
                     this.radio.setValue(input.name, value)
                     break
                 case 'checkbox':
-                    input.checked = false
-                    input.click()
+                    if (value !== input.checked) {
+                        input.checked = false
+                        input.click()
+                    }
                     break
                 default:
                     input.value = value
