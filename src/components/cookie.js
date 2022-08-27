@@ -1,6 +1,8 @@
 import Cookies from 'js-cookie'
 import dom from '../lib/dom'
 
+Cookies.withAttributes({ path: '/', secure: true, sameSite: 'strict' })
+
 class FpCookie {
     static STORE = '__fp_store'
 
@@ -8,7 +10,9 @@ class FpCookie {
      * Static initializer
      */
     static {
-        Cookies.withAttributes({ path: '/', secure: true, sameSite: 'strict' })
+        // Not support in webpack terser yet
+        // https://github.com/terser/terser/issues/1093
+        // Cookies.withAttributes({ path: '/', secure: true, sameSite: 'strict' })
     }
 
     /**
