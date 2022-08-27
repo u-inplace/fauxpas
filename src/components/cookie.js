@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie'
 import dom from '../lib/dom'
 
-Cookies.withAttributes({ path: '/', secure: true, sameSite: 'strict' })
+Cookies.withAttributes({ secure: true, sameSite: 'strict' })
 
 class FpCookie {
     static STORE = '__fp_store'
