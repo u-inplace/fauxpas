@@ -25,7 +25,7 @@ class FpCookie {
     static set(name, value) {
         const { store } = this
         store[name] = value
-        Cookies.set(this.STORE, JSON.stringify(store))
+        Cookies.set(this.STORE, JSON.stringify(store), { secure: true, sameSite: 'strict' })
     }
 
     /**
@@ -42,7 +42,7 @@ class FpCookie {
      * Delete a cookie
      */
     static clear() {
-        Cookies.remove(this.STORE)
+        Cookies.remove(this.STORE, { secure: true, sameSite: 'strict' })
     }
 
     static get store() {
