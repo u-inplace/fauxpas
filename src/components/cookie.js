@@ -8,10 +8,9 @@ class FpCookie {
 
     /**
      * Static initializer
-     */
-    /**
      * Not support in webpack terser yet
      * https://github.com/terser/terser/issues/1093
+     * 
     static {
         Cookies.withAttributes({ path: '/', secure: true, sameSite: 'strict' })
     }
