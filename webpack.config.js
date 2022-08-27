@@ -32,7 +32,7 @@ const core = {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].bundle.js',
         sourceMapFilename: '[name].bundle.js.map',
-        clean: true
+        clean: false
     }
 }
 

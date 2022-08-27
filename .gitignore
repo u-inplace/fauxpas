@@ -102,4 +102,5 @@ coverage
 ############################
 
 .env
-dist/*/*
+dist/*
+!dist/index.html
