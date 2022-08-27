@@ -5,6 +5,7 @@ import FpValidation from './components/validation'
 
 // Wait for DOM to load before query elements
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('Fp: DOMContentLoaded')
     FpParams()
     FpCookies()
     FpValidation()
