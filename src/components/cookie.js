@@ -5,6 +5,13 @@ class FpCookie {
     static STORE = '__fp_store'
 
     /**
+     * Static initializer
+     */
+    static {
+        Cookies.withAttributes({ path: '/', secure: true, sameSite: 'strict' })
+    }
+
+    /**
      * Store a cookie
      *
      * @param {string} name
@@ -13,7 +20,7 @@ class FpCookie {
     static set(name, value) {
         const { store } = this
         store[name] = value
-        Cookies.set(this.STORE, JSON.stringify(store), { secure: true, sameSite: 'strict' })
+        Cookies.set(this.STORE, JSON.stringify(store))
     }
 
     /**
